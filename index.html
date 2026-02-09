@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#000;
+  color:white;
+  text-align:center;
+  overflow:hidden;
+}
+
+.page{
+  display:none;
+  height:100vh;
+  width:100vw;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+
+.active{display:flex;}
+
+button{
+  padding:14px 28px;
+  border:none;
+  border-radius:30px;
+  background:#ff4d6d;
+  color:white;
+  font-size:18px;
+  cursor:pointer;
+  margin-top:25px;
+}
+
+.fade{
+  animation:fade 1.4s ease-in-out;
+}
+
+@keyframes fade{
+  from{opacity:0; transform:scale(0.9);}
+  to{opacity:1; transform:scale(1);}
+}
+
+img{
+  width:260px;
+  border-radius:18px;
+  box-shadow:0 0 25px rgba(255,77,109,0.6);
+}
+
+.heart{
+  position:absolute;
+  color:#ff4d6d;
+  font-size:24px;
+  animation:float 6s linear infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(100vh); opacity:0;}
+  20%{opacity:1;}
+  100%{transform:translateY(-10vh); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="music" loop>
+  <source src="tu_h_to_m_hu.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+<div class="page active fade" id="p1">
+  <h1>Hey baby 🥹❤️</h1>
+  <p>I made something just for you…</p>
+  <button onclick="nextPage(2)">Open Me 💌</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page fade" id="p2">
+  <img src="Baby.jpg" alt="Baby">
+  <p style="margin-top:20px;">Every moment with you feels magical ✨</p>
+  <button onclick="nextPage(3)">Tap to continue 💖</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page fade" id="p3">
+  <h1>Will you be my Valentine? 🌹</h1>
+  <button onclick="nextPage(4)">YES ❤️</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page fade" id="p4">
+  <h1>Yayyyy 😭💍</h1>
+  <p>You said YES!</p>
+  <p>Forever starts now ❤️</p>
+</div>
+
+<script>
+function nextPage(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('p'+n).classList.add('active');
+
+  if(n === 2){
+    document.getElementById('music').play();
+  }
+}
+
+// floating hearts
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(18+Math.random()*22)+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},400);
+</script>
+
+</body>
+</html>
